@@ -1,5 +1,3 @@
 #!/usr/bin/env bash
 
-echo "Starting composer..."
-composer prestashop-setup-core
 echo "Complete!"
