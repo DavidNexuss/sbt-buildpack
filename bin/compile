@@ -21,6 +21,6 @@ curl -o $APT_CACHE_DIR/sbt.deb -s -L https://dl.bintray.com/sbt/debian/sbt-1.2.8
 echo "-----> Package downloaded"
 mkdir sbt
 
-dpkg dpkg -x $APT_CACHE_DIR/sbt.deb sbt
+dpkg -x $APT_CACHE_DIR/sbt.deb sbt
 
 rm $APT_CACHE_DIR/sbt.deb
