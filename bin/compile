@@ -1,6 +1,25 @@
 #!/usr/bin/env bash
 # bin/compile <build-dir> <cache-dir>
 
-echo "-----> Installing prestashop"
-echo "----->Starting composer..."
-composer prestashop-setup-core
+indent() {
+  sed -u 's/^/       /'
+}
+
+
+BP_DIR="$(cd "$(dirname "$0")" && pwd)"
+BUILD_DIR=$1
+CACHE_DIR=$2
+OPT_DIR=$BP_DIR/../opt/
+
+export_env_dir $3
+
+APT_CACHE_DIR="$CACHE_DIR/apt/cache"
+APT_STATE_DIR="$CACHE_DIR/apt/state"
+APT_OPTIONS="-o debug::nolocking=true -o dir::cache=$APT_CACHE_DIR -o dir::state=$APT_STATE_DIR"
+
+echo "----------------SBT Project compiler-----------------"
+echo "-----> Installing sbt"
+curl -o $APT_CACHE_DIR/sbt.deb -s -L https://dl.bintray.com/sbt/debian/sbt-1.2.8.deb
+dpkg -i $APT_CACHE_DIR/sbt.deb
+
+rm $APT_CACHE_DIR/sbt.deb
